@@ -15,7 +15,9 @@ contact: `vmli@bu.edu`
 As high-throughput technology evolves, a large number of omics-signatures are being derived. This package contains _OmicSignature_ and _OmicSignatureCollection_ R6 objects to store signatures efficiently and retrieve them conveniently.
 
 ### development notes
-Run `devtools::document()`, and `.Rd` description will be automatically generated. Do not manually edit `.Rd` files.  
-Run `devtools::check()` to check the package.  
-Run `devtools::build()` to build the package locally.  
+Run `roxygen2::roxygenize()` to update help documentation
+Run `devtools::build_vignettes()` to build vig.
+Run `devtools::check()` to makes sure the package builds and all tests pass
+Run `BiocCheck::BiocCheck()` if you’re really ambitious
+Run `pkgdown::build_site()` to update the usage documentation / package landing site
 

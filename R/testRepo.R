@@ -1,9 +1,10 @@
 #' @title a test function 
 #' @description type a number, and it will gives you its square and cubic value.
 #' Or a text, it will gives you the length of it.
-#'
+#' @importFrom methods is
 #' @param num A number
 #' @return A list
+#' @export
 testRepo <- function(num=NULL) {
 	cat("Hello! Welcome to SigRepo package. -- developing version\n")
   if (is(num, "numeric")){

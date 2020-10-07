@@ -2,6 +2,7 @@
 #' @description Get the current BRENDA term id and name from a term id,
 #' term name, or synonym.
 #' updated 07/2020
+#' @importFrom methods is
 #' @param x A BRENDA term id, term name, or synonym of a term
 #' @param obo Optional. The ontology file. BRENDA OBO file will be loaded if not provided.
 #' @return If input is a valid BRENDA term, return a character of the current
@@ -11,6 +12,7 @@
 #' BRENDACurrentName("BTO:0005475") # valid current name, output itself
 #' BRENDACurrentName("SUM149 cell") # valid synonym; change to current name
 #' BRENDACurrentName("BTO:0005388") # valid synonym; change to current name
+#' @export
 BRENDACurrentName <- function(x, obo = BRENDAobo) {
   # if input is a current term id:
   if (startsWith(x, "BTO:") & x %in% obo$id) {
@@ -62,6 +64,8 @@ BRENDACurrentName <- function(x, obo = BRENDAobo) {
 #' # same as above
 #' BRENDASearch(c("MDA-MB", "SUM"), contain_all = FALSE) 
 #' # search for results that contain either "MDA-MB" or "SUM"
+#' 
+#' @export
 BRENDASearch <- function(x, obo = BRENDAobo, contain_all = TRUE) {
   x <- unlist(strsplit(x, split = " "))
   if (is(obo, "ontology_index")) {
@@ -99,6 +103,7 @@ BRENDASearch <- function(x, obo = BRENDAobo, contain_all = TRUE) {
 #' BRENDADevelopFrom("BTO:0000150")
 #' BRENDADevelopFrom("BTO:0000187") # input is a valid BRENDA term but
 #' # it is not developed from any other tissues, gives character0
+#' @export
 BRENDADevelopFrom <- function(x, obo = BRENDAobo) {
   id <- BRENDACurrentName(x, obo)[1]
   result <- c(obo$develops_from[[id]], obo$name[obo$develops_from[[id]]])
@@ -126,6 +131,7 @@ BRENDADevelopFrom <- function(x, obo = BRENDAobo) {
 #' BRENDAPartOf("BTO:0000187")
 #' BRENDAPartOf("myeloblast")
 #' BRENDAPartOf("BTO:0001732")
+#' @export
 BRENDAPartOf <- function(x, obo = BRENDAobo) {
   id <- BRENDACurrentName(x, obo)[1]
   result <- matrix(c(obo$part_of[[id]], obo$name[obo$part_of[[id]]]),
@@ -151,6 +157,7 @@ BRENDAPartOf <- function(x, obo = BRENDAobo) {
 #' BRENDAAncestors("BTO:0000034")
 #' BRENDAAncestors("SUM149 cell") # synonym; function will change it to the current name
 #' BRENDAAncestors("BTO:0000216") # input valid but no result, gives character0
+#' @export
 BRENDAAncestors <- function(x, obo = BRENDAobo) {
   x <- BRENDACurrentName(x, obo)
   result <- ontologyIndex::get_ancestors(obo, terms = x[1])
@@ -175,6 +182,7 @@ BRENDAAncestors <- function(x, obo = BRENDAobo) {
 #' @examples
 #' BRENDADescendants("BTO:0000034")
 #' BRENDADescendants("BTO:0000004") # input valid but no result, gives character0
+#' @export
 BRENDADescendants <- function(x, obo = BRENDAobo) {
   x <- BRENDACurrentName(x, obo)
   result <- ontologyIndex::get_descendants(obo, roots = x[1])

@@ -1,0 +1,22 @@
+---
+title: "Dev-vignette"
+output: rmarkdown::html_vignette
+author: "Vanessa"
+date: "2020"
+vignette: >
+  %\VignetteIndexEntry{Dev-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+```{r}
+#library(DevTest)
+devtools::load_all(".")
+BRENDASearch("MDA")
+```
+

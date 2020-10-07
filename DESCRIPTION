@@ -1,6 +1,6 @@
-Package: SigRepoR
+Package: DevTest
 Type: Package
-Title: storing and processing omic signature
+Title: Development testing
 Version: 0.1.0
 Author: Mengze Li, Callen Bragdon
 Maintainer: Mengze Li <vmli@bu.edu>
@@ -16,7 +16,6 @@ Imports:
 	magrittr,
 	ontologyIndex,
 	methods,
-	jsonlite,
 	knitr,
 	limma
 Suggests:
